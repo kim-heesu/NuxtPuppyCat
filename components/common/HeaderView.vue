@@ -6,7 +6,7 @@
         
         <div class="btn-down-wrap display-pc">
             <button class="btn-down">
-                <lottie class="btn-animation-area-pc" :options="lottieBtnDown" />
+                <lottie class="btn-animation-area-pc" :options="lottieBtnDown" ref="lottieContainer"/>
             </button>
             <img src="@/assets/img/img_puppy_qr_layer.png" class="app-down-layer" alt="QR코드를 스캔해보세요! 퍼피캣 다운받기" />
         </div>
@@ -34,7 +34,22 @@ export default {
         lottieBtnDown: { animationData: lottieBtnDown.default},
         lottieBtnDownM: { animationData: lottieBtnDownM.default}
     }
-  }
+  },
+  mounted() {
+    this.animation = this.$refs.lottieContainer.anim;
+    this.animation.stop();
+
+    this.$refs.lottieContainer.$el.addEventListener('mouseenter', this.playAnimation);
+    this.$refs.lottieContainer.$el.addEventListener('mouseleave', this.stopAnimation);
+  },
+  methods: {
+    playAnimation() {
+      this.animation.play();
+    },
+    stopAnimation() {
+      this.animation.stop();
+    },
+  },
 }
 </script>
 
@@ -49,11 +64,11 @@ header {
     width: 100%;
     padding: 1.8rem 12rem;
     z-index: 10;
-    transition: all 0.3s;
-    -webkit-transition: all 0.3s;
-    -moz-transition: all 0.3s;
-    -ms-transition: all 0.3s;
-    -o-transition: all 0.3s;
+    transition: opacity 0.3s;
+    -webkit-transition: opacity 0.3s;
+    -moz-transition: opacity 0.3s;
+    -ms-transition: opacity 0.3s;
+    -o-transition: opacity 0.3s;
 }
 header .logo {
     display: block;

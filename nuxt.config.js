@@ -1,9 +1,8 @@
-import { defineNuxtModule } from 'nuxt'
 export default {
   head: {
     title: 'nuxtPuppyCat',
     htmlAttrs: {
-      lang: 'en'
+      lang: 'ko'
     },
     meta: [
       { charset: 'utf-8' },
@@ -18,8 +17,8 @@ export default {
   css: [
     '@/assets/css/reset.css',
     '@/assets/css/font/NanumSquareNeo.css',
+    '@/assets/css/swiper.min.css',
     '@/assets/css/layout.css',
-    '@/node_modules/swiper/swiper-bundle.css'
   ],
   plugins: [
     { src: '~/plugins/lottie', mode: 'client' },

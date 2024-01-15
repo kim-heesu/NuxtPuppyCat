@@ -50,8 +50,30 @@
         </section>
         <section class="slide-items bottom-col">
             <div class="slide-col">
-  
+                <div class="bottom-slide01 swiper-container">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide"><img src="@/assets/img/img_puppy_banner_top_1.png" alt="퍼피캣 슬라이드이미지" /></div>
+                        <div class="swiper-slide"><lottie :options="lottieSlideCat" /></div>
+                        <div class="swiper-slide"><img src="@/assets/img/img_puppy_banner_top_3.png" alt="퍼피캣 슬라이드이미지" /></div>
+                        <div class="swiper-slide"><img src="@/assets/img/img_puppy_banner_top_4.png" alt="퍼피캣 슬라이드이미지" /></div>
+                        <div class="swiper-slide"><img src="@/assets/img/img_puppy_banner_top_5.png" alt="퍼피캣 슬라이드이미지" /></div>
+                        <div class="swiper-slide"><img src="@/assets/img/img_puppy_banner_top_6.png" alt="퍼피캣 슬라이드이미지" /></div>
+                        <div class="swiper-slide"><img src="@/assets/img/img_puppy_banner_top_7.png" alt="퍼피캣 슬라이드이미지" /></div>
+                    </div>
+                </div> 
+                <div class="bottom-slide02 swiper-container" dir="rtl">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide"><img src="@/assets/img/img_puppy_banner_bottom_1.png" alt="퍼피캣 슬라이드이미지" /></div>
+                        <div class="swiper-slide"><img src="@/assets/img/img_puppy_banner_bottom_2.png" alt="퍼피캣 슬라이드이미지" /></div>
+                        <div class="swiper-slide"><img src="@/assets/img/img_puppy_banner_bottom_3.png" alt="퍼피캣 슬라이드이미지" /></div>
+                        <div class="swiper-slide"><img src="@/assets/img/img_puppy_banner_bottom_4.png" alt="퍼피캣 슬라이드이미지" /></div>
+                        <div class="swiper-slide"><lottie :options="lottieSlideRound" /></div>
+                        <div class="swiper-slide"><img src="@/assets/img/img_puppy_banner_bottom_6.png" alt="퍼피캣 슬라이드이미지" /></div>
+                        <div class="swiper-slide"><img src="@/assets/img/img_puppy_banner_bottom_7.png" alt="퍼피캣 슬라이드이미지" /></div>
+                    </div>
+                </div> 
             </div>
+
         </section>
         <section class="slide-items footer-col">
             <FooterView />
@@ -60,17 +82,11 @@
 </template>
 
 <style scoped>
-html,
-body,
-.wrap {
-    position: relative;
-    height: 100%;
-}
 .slide-items{
     position: relative;
     width: 100%;
 }
-.slide-items:not(.footer-col){
+.slide-items:not(.footer-col,.bottom-col){
     height: 100vh;
 }
 section {
@@ -260,7 +276,7 @@ section {
 }
 .slide-col {
     position: relative;
-    padding: 12rem 0 32rem;
+    padding: 9rem 0 32rem;
     background-image: url(@/assets/img/bg_puppy_f_floor.png);
     background-repeat: no-repeat;
     background-size: contain;
@@ -283,6 +299,18 @@ section {
     width: 61.6rem;
     height: 20rem;
     background: url(@/assets/img/img_puppy_f_right.png) no-repeat right bottom / contain;
+}
+.slide-col .swiper-wrapper{
+    transition-timing-function: linear;    
+}
+.slide-col .swiper-slide{
+    width: 30rem;
+    height: 30rem;
+    border-radius: 2rem;
+    overflow: hidden;
+}
+.slide-col .bottom-slide02{
+    margin-top: 3rem;
 }
 @media screen and (max-width: 1024px) {
     html {
@@ -420,6 +448,13 @@ section {
         height: 7.19rem;
         background: url(@/assets/img/img_m_puppy_f_right.png) no-repeat right bottom / contain;
     }
+    .slide-col .swiper-slide{
+        width: 16rem;
+        height: 16rem;
+    }
+    .slide-col .bottom-slide02{
+        margin-top: 1.5rem;
+    }
 }
 </style>
 
@@ -453,16 +488,44 @@ export default {
         }
     },
     mounted () {
-        this.swiper = new Swiper('.swiper-container', {
-            // Swiper options here
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
+        this.mediaSwiper = new Swiper('.media-slide', {
+            loop: true,
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            }
+        });
+
+        this.bottmo01Swiper = new Swiper('.bottom-slide01', {
+            autoplay: {
+                delay: 0,
+                stopOnLastSlide: false,
+                disableOnInteraction: true,
             },
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
+            spaceBetween: 20,
+            speed: 8000,
+            touchRatio: 0,
+            loop:true,
+            slidesPerView: "auto",
+            loopedSlides: 5,
+            observer:true, 
+            observeParents:true,
+        });
+
+        this.bottmo02Swiper = new Swiper('.bottom-slide02', {
+            autoplay: {
+                delay: 0,
+                stopOnLastSlide: false,
+                disableOnInteraction: true,
             },
+            spaceBetween: 20,
+            speed: 8000,
+            touchRatio: 0,
+            loop:true,
+            slidesPerView: "auto",
+            loopedSlides: 5,
+            observer:true, 
+            observeParents:true,
         });
         
         this.calculateSectionOffsets();
@@ -472,6 +535,16 @@ export default {
         
         window.addEventListener('touchstart', this.touchStart, { passive: false }); // mobile devices
         window.addEventListener('touchmove', this.touchMove, { passive: false }); // mobile devices
+
+        document.querySelector('header').style.opacity = 0;
+        window.addEventListener('scroll', function(){
+            const scrollPosition = window.scrollY;
+            if (scrollPosition > 0) {
+                document.querySelector('header').style.opacity = 1;
+            } else {
+                document.querySelector('header').style.opacity = 0;
+            }
+        });
     },
     destroyed (){
         window.removeEventListener('DOMMouseScroll', this.handleMouseWheelDOM); // Mozilla Firefox
@@ -565,6 +638,16 @@ export default {
             
             this.touchStartY = 0;
             return false;
+        },
+        headerVisible(){
+            const scrollPosition = window.scrollY;
+
+            console.log('dd')
+            if (scrollPosition > 0) {
+                this.$store.dispatch('checkHeader', true);
+            } else {
+                this.$store.dispatch('checkHeader', false);
+            }
         }
     },
     watch: {

@@ -40,6 +40,14 @@ body,
     position: relative;
     height: 100%;
 }
+body::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
 @media screen and (min-width: 2000px) {
     html {
         font-size: 0.5vw;

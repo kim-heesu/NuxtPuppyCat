@@ -1,3 +1,4 @@
+
 export default {
 	state: {
 		modalState: {
@@ -5,7 +6,6 @@ export default {
 		},
 		showHeaderView: true,
 	},
-	getters: {},
 	mutations: {
 		openModal (state, modalName) {
 			state.modalState[modalName] = true
