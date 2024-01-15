@@ -1,6 +1,6 @@
 <template>
 	<div class="wrap">
-		<HeaderView />
+		<HeaderView v-if="showHeaderView"/>
 		<Nuxt />
 	</div>
   </template>
@@ -10,7 +10,28 @@
   export default {
 	components: {
 	  HeaderView,
-	}
+	},
+	data() {
+		return {
+			currentPath: this.$route.path
+		};
+	},
+	mounted(){
+	},
+	computed: {
+        showHeaderView() {
+            return this.$store.state.showHeaderView;
+        }
+    },
+	watch: {
+		$route(to, from) {
+			if(to.path.includes('/policy')){
+				this.$store.dispatch('checkHeader', false);
+			} else {
+				this.$store.dispatch('checkHeader', true);
+			}
+		},
+	},
   }
   </script>
   

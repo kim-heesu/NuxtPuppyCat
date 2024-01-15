@@ -12,10 +12,14 @@
     "lintfix": "npm run lint:js -- --fix"
   },
   "dependencies": {
+    "@lottiefiles/vue-lottie-player": "^1.1.0",
     "@nuxtjs/axios": "^5.13.6",
     "core-js": "^3.25.3",
+    "lottie-web": "^5.12.2",
     "nuxt": "^2.15.8",
+    "swiper": "^5.4.5",
     "vue": "^2.7.10",
+    "vue-lottie": "^0.2.1",
     "vue-server-renderer": "^2.7.10",
     "vue-template-compiler": "^2.7.10"
   },

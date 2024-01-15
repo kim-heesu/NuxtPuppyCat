@@ -3,7 +3,7 @@
       <div class="inner-col">
           <h2 class="f-logo"><span class="blind">PUPPYCAT</span></h2>
           <div class="terms-box">
-              <a href="javascript:void(0)" class="btn-modal-open" data-name="modalPrivacy">개인정보처리방침</a>
+              <a href="javascript:void(0)" class="btn-modal-open" @click="changeModalTitle('개인정보처리방침'),changeModalVisible('TermsView'), openModal('modalWrap')">개인정보처리방침</a>
               <!-- <a href="#">이용약관</a>
               <a href="#">위치기반 서비스</a> -->
           </div>
@@ -21,6 +21,7 @@
           <p class="copyright">Copyright ⓒ 2023 UX PLUS PET CARE., LTD. All rights Reserved.</p>
           <!-- <a title="puppycat instagram" target="_blank" href="#" class="go-insta"><span class="blind">puppycat instagram</span></a> -->
       </div>
+      <ModalWrap v-if="$store.state.modalState.modalWrap" :modalTitle="modalTitle" :visibleModal="visibleModal"/>
   </footer>
 </template>
 
@@ -34,7 +35,7 @@ footer .f-logo {
     width: 8rem;
     height: 1.2rem;
     margin: 0 auto;
-    background: url(../img/img_puppy_f_logo.png) no-repeat center / 100%;
+    background: url(@/assets/img/img_puppy_f_logo.png) no-repeat center / 100%;
 }
 footer .terms-box {
     display: flex;
@@ -76,7 +77,7 @@ footer .go-insta {
     width: 4rem;
     height: 4rem;
     margin: 2.4rem auto 0;
-    background: url(../img/ico_puppy_insta.png) no-repeat center / 100%;
+    background: url(@/assets/img/ico_puppy_insta.png) no-repeat center / 100%;
 }
 @media screen and (max-width: 1024px) {
     footer {
@@ -109,3 +110,29 @@ footer .go-insta {
     }
 }
 </style>
+
+<script>
+import ModalWrap from '@/components/modal/ModalWrap.vue'
+export default {
+    components: {
+        ModalWrap
+    },
+    data () {
+        return {
+            modalTitle: '',
+            visibleModal: 'TermsView'
+        }
+	},
+    methods: {
+		openModal (modalName) {
+			this.$store.dispatch('openModal', modalName)
+		},
+        changeModalTitle(title){
+            this.modalTitle = title
+        },
+        changeModalVisible(visible){
+            this.visibleModal = visible
+        }
+	}
+}
+</script>

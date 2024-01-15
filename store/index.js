@@ -1,8 +1,9 @@
 export default {
 	state: {
 		modalState: {
-			modalTest: false,
-		}
+			modalWrap: false,
+		},
+		showHeaderView: true,
 	},
 	getters: {},
 	mutations: {
@@ -11,14 +12,20 @@ export default {
 		},
 		closeModal (state, modalName) {
 			state.modalState[modalName] = false
-		}
+		},
+		checkHeader (state, boolean) {
+			state.showHeaderView = boolean
+		},
 	},
 	actions: {
 		openModal ({ commit }, payload) {
 			commit('openModal', payload)
 		},
-		closeModal ({ commit }, modalName) {
-			commit('closeModal', modalName)
+		closeModal ({ commit }, payload) {
+			commit('closeModal', payload)
+		},
+		checkHeader ({ commit }, payload) {
+			commit('checkHeader', payload)
 		}
 	}
 }

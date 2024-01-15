@@ -1,18 +1,19 @@
 <template>
     <header>
         <h1>
-            <a title="PUPPYCAT home" target="_blank" href="#" class="logo"><span class="blind">puppycat</span></a>
+            <nuxt-link to="/" title="PUPPYCAT home" class="logo"><span class="blind">puppycat</span></nuxt-link>
         </h1>
+        
         <div class="btn-down-wrap display-pc">
             <button class="btn-down">
-                <lottie-player class="btn-animation-area-pc" src="/assets/img/lottie_puppy_btn_appdown.json" background="transparent" speed=".9" loop hover></lottie-player>
+                <lottie class="btn-animation-area-pc" :options="lottieBtnDown" />
             </button>
-            <img src="/assets/img/img_puppy_qr_layer.png" class="app-down-layer" alt="QR코드를 스캔해보세요! 퍼피캣 다운받기" />
+            <img src="@/assets/img/img_puppy_qr_layer.png" class="app-down-layer" alt="QR코드를 스캔해보세요! 퍼피캣 다운받기" />
         </div>
 
         <div class="btn-down display-m">
             <a title="puppcat 앱 다운로드" target="_blank" href="https://m.site.naver.com/1gXzM">
-                <lottie-player class="btn-animation-area-mo display-m" src="/assets/img/lottie_m_puppy_btn_appdown.json" background="transparent" speed=".9" loop autoplay></lottie-player>
+                <lottie class="btn-animation-area-mo display-m" :options="lottieBtnDownM" />
             </a>
         </div>
     </header>
@@ -20,9 +21,19 @@
 
 <script>
 import NavView from '~/components/common/NavView.vue'
+import lottie from 'vue-lottie/src/lottie.vue'
+import * as lottieBtnDown from "~/assets/img/lottie_puppy_btn_appdown.json";
+import * as lottieBtnDownM from "~/assets/img/lottie_m_puppy_btn_appdown.json";
 export default {
   components: {
-    NavView
+    NavView,
+    lottie
+  },
+  data () {
+    return {
+        lottieBtnDown: { animationData: lottieBtnDown.default},
+        lottieBtnDownM: { animationData: lottieBtnDownM.default}
+    }
   }
 }
 </script>
@@ -48,7 +59,7 @@ header .logo {
     display: block;
     width: 12rem;
     height: 1.8rem;
-    background: url(../img/img_puppy_logo.png) no-repeat center / 100%;
+    background: url(@@/assets/img/img_puppy_logo.png) no-repeat center / 100%;
 }
 header .btn-down-wrap {
     position: relative;
@@ -88,7 +99,7 @@ header .btn-down-wrap:hover .app-down-layer {
     header .logo {
         width: 10rem;
         height: 1.6rem;
-        background: url(../img/img_m_puppy_logo.png) no-repeat center / 100%;
+        background: url(@@/assets/img/img_m_puppy_logo.png) no-repeat center / 100%;
     }
     header .btn-down {
         width: 8.8rem;
@@ -97,6 +108,18 @@ header .btn-down-wrap:hover .app-down-layer {
     }
     header .btn-down-wrap:hover .app-down-layer {
         display: none !important;
+    }
+    @media screen and (max-width: 768px) {
+        header {
+            left: 0;
+            width: 100%;
+            padding: 0.8rem 1.6rem;
+            transform: none;
+            -webkit-transform: none;
+            -moz-transform: none;
+            -ms-transform: none;
+            -o-transform: none;
+        }
     }
 }
 </style>
