@@ -1,4 +1,4 @@
-# nuxtPuppyCat
+# nuxt Puppy Cat
 
 ## Build Setup
 
