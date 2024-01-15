@@ -11,7 +11,7 @@
                     <img src="@/assets/img/img_puppy_qr.png" class="img-qr" alt="QR코드를 스캔해보세요! 퍼피캣 다운받기" />
                 </div>
                 <div class="app-box display-m">
-                    <a title="puppcat 앱 다운로드" target="_blank" href="https://m.site.naver.com/1gXzM">
+                    <a title="puppy cat 앱 다운로드" target="_blank" href="https://m.site.naver.com/1gXzM">
                         <img src="@/assets/img/img_puppy_btn_appdown.png" class="img-qr" alt="앱 다운로드" />
                     </a>
                 </div>
@@ -40,7 +40,7 @@
                                 <div class="swiper-slide"><img src="@/assets/img/img_puppy_mobile04.png" alt="퍼피캣 모바일화면 이미지" /></div>
                                 <div class="swiper-slide"><img src="@/assets/img/img_puppy_mobile05.png" alt="퍼피캣 모바일화면 이미지" /></div>
                             </div>
-                        </div>  
+                        </div>
                     </div>
                     <div class="mobile-img">
                         <img src="@/assets/img/img_puppy_mobile06.png" alt="소셜미디어 이미지" />
@@ -60,7 +60,7 @@
                         <div class="swiper-slide"><img src="@/assets/img/img_puppy_banner_top_6.png" alt="퍼피캣 슬라이드이미지" /></div>
                         <div class="swiper-slide"><img src="@/assets/img/img_puppy_banner_top_7.png" alt="퍼피캣 슬라이드이미지" /></div>
                     </div>
-                </div> 
+                </div>
                 <div class="bottom-slide02 swiper-container" dir="rtl">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide"><img src="@/assets/img/img_puppy_banner_bottom_1.png" alt="퍼피캣 슬라이드이미지" /></div>
@@ -71,7 +71,7 @@
                         <div class="swiper-slide"><img src="@/assets/img/img_puppy_banner_bottom_6.png" alt="퍼피캣 슬라이드이미지" /></div>
                         <div class="swiper-slide"><img src="@/assets/img/img_puppy_banner_bottom_7.png" alt="퍼피캣 슬라이드이미지" /></div>
                     </div>
-                </div> 
+                </div>
             </div>
 
         </section>
@@ -301,7 +301,7 @@ section {
     background: url(@/assets/img/img_puppy_f_right.png) no-repeat right bottom / contain;
 }
 .slide-col .swiper-wrapper{
-    transition-timing-function: linear;    
+    transition-timing-function: linear;
 }
 .slide-col .swiper-slide{
     width: 30rem;
@@ -508,7 +508,7 @@ export default {
             loop:true,
             slidesPerView: "auto",
             loopedSlides: 5,
-            observer:true, 
+            observer:true,
             observeParents:true,
         });
 
@@ -524,15 +524,15 @@ export default {
             loop:true,
             slidesPerView: "auto",
             loopedSlides: 5,
-            observer:true, 
+            observer:true,
             observeParents:true,
         });
-        
+
         this.calculateSectionOffsets();
-        
+
         window.addEventListener('DOMMouseScroll', this.handleMouseWheelDOM);  // Mozilla Firefox
         window.addEventListener('mousewheel', this.handleMouseWheel, { passive: false }); // Other browsers
-        
+
         window.addEventListener('touchstart', this.touchStart, { passive: false }); // mobile devices
         window.addEventListener('touchmove', this.touchMove, { passive: false }); // mobile devices
 
@@ -549,7 +549,7 @@ export default {
     destroyed (){
         window.removeEventListener('DOMMouseScroll', this.handleMouseWheelDOM); // Mozilla Firefox
         window.removeEventListener('mousewheel', this.handleMouseWheel, { passive: false });  // Other browsers
-        
+
         window.removeEventListener('touchstart', this.touchStart); // mobile devices
         window.removeEventListener('touchmove', this.touchMove); // mobile devices
     },
@@ -557,7 +557,7 @@ export default {
         calculateSectionOffsets() {
             let sections = document.getElementsByTagName('section');
             let length = sections.length;
-            
+
             for(let i = 0; i < length; i++) {
                 let sectionOffset = sections[i].offsetTop;
                 this.offsets.push(sectionOffset);
@@ -604,38 +604,38 @@ export default {
         },
         scrollToSection(id, force = false) {
             if(this.inMove && !force) return false;
-            
+
             this.activeSection = id;
             this.inMove = true;
-            
+
             // get section and scroll into view if it exists
             let section = document.getElementsByTagName('section')[id];
             if(section) {
                 document.getElementsByTagName('section')[id].scrollIntoView({behavior: 'smooth'});
             }
-            
+
             setTimeout(() => {
                 this.inMove = false;
             }, this.inMoveDelay);
-            
+
         },
         touchStart(e) {
             e.preventDefault();
-            
+
             this.touchStartY = e.touches[0].clientY;
         },
         touchMove(e) {
             if(this.inMove) return false;
             e.preventDefault();
-            
+
             const currentY = e.touches[0].clientY;
-            
+
             if(this.touchStartY < currentY) {
                 this.moveDown();
             } else {
                 this.moveUp();
             }
-            
+
             this.touchStartY = 0;
             return false;
         },
