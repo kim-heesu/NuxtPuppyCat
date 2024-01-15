@@ -17,6 +17,11 @@
 		};
 	},
 	mounted(){
+		if(this.currentPath.includes('/policy')){
+			this.$store.dispatch('checkHeader', false);
+		} else {
+			this.$store.dispatch('checkHeader', true);
+		}
 	},
 	computed: {
         showHeaderView() {
