@@ -302,6 +302,7 @@ section {
 }
 .slide-col .swiper-wrapper{
     transition-timing-function: linear;
+    touch-action: none;
 }
 .slide-col .swiper-slide{
     width: 30rem;
